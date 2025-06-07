@@ -1,5 +1,4 @@
-// app/api/todos/route.ts
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
 type Todo = {
   id: number;
@@ -7,22 +6,13 @@ type Todo = {
   completed: boolean;
 };
 
-let todos: Todo[] = [
-  { id: 1, title: 'Learn Next.js', completed: false },
-  { id: 2, title: 'Build Todo API', completed: true },
+// Use const here, since todos is not reassigned
+const todos: Todo[] = [
+  { id: 1, title: "Learn Next.js", completed: false },
+  { id: 2, title: "Build an app", completed: false },
+  { id: 3, title: "Deploy to Vercel", completed: false },
 ];
 
-export function GET() {
+export async function GET() {
   return NextResponse.json(todos);
-}
-
-export async function POST(req: Request) {
-  const { title } = await req.json();
-  const newTodo: Todo = {
-    id: todos.length + 1,
-    title,
-    completed: false,
-  };
-  todos.push(newTodo);
-  return NextResponse.json(newTodo);
 }
